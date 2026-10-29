@@ -1,43 +1,126 @@
-# NetworkWalks Week 1 Cybersecurity Lab Setup
+# Networkwalks Cybersecurity Internship — Week 1
 
-## Overview
+## Project
+Cybersecurity & Pentesting Lab Setup with VirtualBox and Kali Linux.
 
-This project documents the network baseline established for a Kali Linux virtual machine in a VMware Workstation environment. The goal of the lab was to confirm the guest had a valid network configuration, could reach the default gateway, and could establish outbound connectivity to external services over the VMware NAT network.
+## Objective
+Build a secure and functional cybersecurity lab environment using Kali Linux in VirtualBox, with a NAT network configured for controlled outbound access, a static Kali IP address, shared folders, clipboard support, drag-and-drop functionality, and a clean snapshot for recovery.
 
-The environment used VMware NAT and a DHCP-assigned IPv4 address. This was a practical lab setup that enabled network validation without creating a second VM or additional host-side configuration.
+The lab was designed to provide a practical starting point for offensive security, networking, and system troubleshooting exercises while keeping the environment isolated enough for safe experimentation.
 
-## Lab objectives
+## Lab Environment
 
-The Week 1 lab focused on validating the following cybersecurity and networking fundamentals:
+- Host platform: VirtualBox
+- Guest OS: Kali Linux
+- Network mode: NAT Network
+- NAT subnet: `10.0.0.0/24`
+- Kali static IP: `10.0.0.2/24`
+- Shared folder: Windows Downloads mapped into Kali
+- Shared clipboard: Enabled
+- Drag-and-drop: Enabled
 
-- Interface identification and status verification
-- DHCP-based IP acquisition in a Linux guest
-- Route and gateway verification
-- Connectivity testing to local and external targets
-- DNS resolution validation
-- HTTPS request verification
-- Evidence collection for technical documentation and portfolio submission
+## Step-by-Step Setup
 
-## Environment summary
+### 1. VirtualBox and Kali Installation
+The pre-built Kali Linux VirtualBox image was imported and started successfully.
 
-| Item | Value |
-| --- | --- |
-| Platform | Virtualbox |
-| Guest OS | Kali Linux |
-| Interface | `eth0` |
-| IP configuration | DHCP |
-| IPv4 address | `192.168.154.132/24` |
-| Gateway | `192.168.154.2` |
-| Subnet | `192.168.154.0/24` |
-| Network mode | NAT |
-| Snapshot name | `Kali - NetworkWalks Baseline` |
+![VM Running](screenshots/01-vm-running.jpg)
 
-## Network architecture
+### 2. NAT Network Configuration
+A NAT Network named `NatNetwork` was created using the IPv4 prefix `10.0.0.0/24`.
 
-The Kali guest was connected to the  NAT network. The guest received an IP address from the VMware DHCP service and used the NAT gateway for outbound connectivity.
+![NAT Network](screenshots/02-natnetwork-settings.jpg)
 
-```mermaid
-flowchart LR
-    A[Internet / External Network] --> B[Gateway 192.168.154.2]
-    B --> C[ NAT ]
-    C --> D[Kali Linux eth0 192.168.154.132/24]
+### 3. Kali VM Network Settings
+The Kali VM was attached to `NatNetwork` and Promiscuous Mode was set to `Allow All` to ensure the guest could interact with the network as needed for the lab.
+
+![Kali Network Adapter](screenshots/03-kali-network-adapter.jpg)
+
+### 4. Clipboard and Drag-and-Drop
+Bidirectional shared clipboard and drag-and-drop were enabled to improve usability between the host and Kali guest.
+
+![Clipboard Settings](screenshots/04-clipboard-dragdrop.jpg)
+
+### 5. Shared Folders
+A shared folder from the Windows host was mapped into the Kali VM and made available on the desktop for file transfer and lab workflow support.
+
+![Shared Folder Settings](screenshots/07-shared-folder-settings.jpg)
+![Shared Folder on Desktop](screenshots/05-shared-folder-desktop.jpg)
+
+### 6. Static IP Configuration
+A static IP address of `10.0.0.2/24` was configured in Kali using `nmcli`. This allowed the VM to have a consistent address within the lab network and ensured stable communication during testing and troubleshooting.
+
+![IP and Internet](screenshots/06-kali-ip-config-internet.jpg)
+
+### 7. Snapshot
+A clean snapshot of the final working configuration was taken to create a reliable recovery point before further lab changes or troubleshooting.
+
+![Snapshot](screenshots/08-snapshot.jpg)
+
+## Network Verification
+
+The lab required the Kali VM to maintain connectivity to both the internal lab network and external internet resources. After the static IP configuration, the environment was validated and tested for reachability.
+
+### Verified commands
+
+```bash
+ip addr
+ip route
+nmcli connection show
+ping -c 3 10.0.0.1
+ping -c 3 8.8.8.8
+curl -I https://www.google.com
+```
+
+These checks confirmed that:
+
+- the interface was active and assigned the correct IP
+- the default route was present
+- the network profile was valid
+- the gateway was reachable
+- external connectivity was working
+- HTTPS services were reachable
+
+## Troubleshooting
+
+### Issue
+After configuring the static IP address in Kali, the VM reported no internet access.
+
+### Root cause
+The issue was caused by a VirtualBox / Kali networking behavior related to DAD timeout handling after the static configuration was applied.
+
+### Fix
+The DAD timeout was disabled and the network interface was restarted to restore connectivity.
+
+```bash
+sudo nmcli connection modify "Wired connection 1" ipv4.dad-timeout 0
+sudo nmcli connection down "Wired connection 1"
+sudo nmcli connection up "Wired connection 1"
+```
+
+This reset the connection and restored the network path, allowing internet access to return.
+
+## Snapshot and Recovery
+
+The completed lab configuration was preserved with a VirtualBox snapshot named:
+
+- `Kali - NetworkWalks Baseline`
+
+This snapshot allows for quick rollback if future networking changes cause service interruption or misconfiguration.
+
+## Skills Demonstrated
+
+This project helped develop practical skills in:
+
+- VirtualBox environment setup and VM configuration
+- Kali Linux network configuration
+- DHCP and static IP assignment
+- NAT networking and route verification
+- Shared folder and host-to-guest integration
+- Troubleshooting connectivity issues in Linux
+- Creating reusable lab snapshots for safe experimentation
+- Technical documentation of a cybersecurity lab setup
+
+## Notes
+
+This lab served as a foundational step for later cybersecurity and pentesting work. It established a working, repeatable environment for learning network analysis, Linux troubleshooting, and security tooling in a controlled lab setup.
