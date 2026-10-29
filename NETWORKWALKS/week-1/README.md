@@ -4,7 +4,7 @@
 
 This project documents the network baseline established for a Kali Linux virtual machine in a VMware Workstation environment. The goal of the lab was to confirm the guest had a valid network configuration, could reach the default gateway, and could establish outbound connectivity to external services over the VMware NAT network.
 
-The environment used VMware NAT (`VMnet8`) and a DHCP-assigned IPv4 address. This was a practical lab setup that enabled network validation without creating a second VM or additional host-side configuration.
+The environment used VMware NAT and a DHCP-assigned IPv4 address. This was a practical lab setup that enabled network validation without creating a second VM or additional host-side configuration.
 
 ## Lab objectives
 
@@ -39,5 +39,5 @@ The Kali guest was connected to the  NAT network. The guest received an IP addre
 ```mermaid
 flowchart LR
     A[Internet / External Network] --> B[Gateway 192.168.154.2]
-    B --> C[VMware NAT VMnet8]
+    B --> C[ NAT ]
     C --> D[Kali Linux eth0 192.168.154.132/24]
