@@ -112,7 +112,7 @@ The command checks HTTPS connectivity and displays the server's response headers
 
 ## Snapshot and Recovery
 
-A snapshot named `Kali - NetworkWalks Baseline` was created after NAT connectivity was established.
+A snapshot named `WK1-Lab-Ready` was created after NAT connectivity was established.
 
 ![Shared folder on the desktop](screenshots/screenshot.jpg)
 
