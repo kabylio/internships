@@ -24,38 +24,38 @@ The lab was designed to provide a practical starting point for offensive securit
 ### 1. VirtualBox and Kali Installation
 The pre-built Kali Linux VirtualBox image was imported and started successfully.
 
-![VM Running](screenshots/01-vm-running.jpg)
+![VM running in VirtualBox](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20154412.png)
 
 ### 2. NAT Network Configuration
 A NAT Network named `NatNetwork` was created using the IPv4 prefix `10.0.0.0/24`.
 
-![NAT Network](screenshots/02-natnetwork-settings.jpg)
+![NAT network settings](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20162643.png)
 
 ### 3. Kali VM Network Settings
 The Kali VM was attached to `NatNetwork` and Promiscuous Mode was set to `Allow All` to ensure the guest could interact with the network as needed for the lab.
 
-![Kali Network Adapter](screenshots/03-kali-network-adapter.jpg)
+![Kali network adapter settings](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20162752.png)
 
 ### 4. Clipboard and Drag-and-Drop
 Bidirectional shared clipboard and drag-and-drop were enabled to improve usability between the host and Kali guest.
 
-![Clipboard Settings](screenshots/04-clipboard-dragdrop.jpg)
+![Clipboard and drag-and-drop settings](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20162940.png)
 
 ### 5. Shared Folders
 A shared folder from the Windows host was mapped into the Kali VM and made available on the desktop for file transfer and lab workflow support.
 
-![Shared Folder Settings](screenshots/07-shared-folder-settings.jpg)
-![Shared Folder on Desktop](screenshots/05-shared-folder-desktop.jpg)
+![Shared folder configuration](screenshots/Copy%20of%20Capture%20d%27%C3%A9cran%202026-10-29%20163026.png)
+![Shared folder on the desktop](screenshots/screenshot.jpg)
 
 ### 6. Static IP Configuration
 A static IP address of `10.0.0.2/24` was configured in Kali using `nmcli`. This allowed the VM to have a consistent address within the lab network and ensured stable communication during testing and troubleshooting.
 
-![IP and Internet](screenshots/06-kali-ip-config-internet.jpg)
+![Static IP and internet connectivity](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20163026.png)
 
 ### 7. Snapshot
 A clean snapshot of the final working configuration was taken to create a reliable recovery point before further lab changes or troubleshooting.
 
-![Snapshot](screenshots/08-snapshot.jpg)
+![Snapshot of the completed lab](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20163026.png)
 
 ## Network Verification
 
@@ -73,7 +73,6 @@ curl -I https://www.google.com
 ```
 
 These checks confirmed that:
-
 - the interface was active and assigned the correct IP
 - the default route was present
 - the network profile was valid
