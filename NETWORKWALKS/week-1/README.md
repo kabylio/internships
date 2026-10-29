@@ -150,11 +150,3 @@ This environment provides a starting point for the remaining cybersecurity inter
 
 
 
-
-
-
-
-
-
-![Snapshot of the completed lab](screenshots/Capture%20d%27%C3%A9cran%202026-10-29%20163026.png)
-
