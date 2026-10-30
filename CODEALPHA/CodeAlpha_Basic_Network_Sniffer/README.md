@@ -52,13 +52,13 @@ A Python-based network sniffer built with Scapy to capture, inspect, and export 
 
 Basic-Network-Sniffer/
 
-â”œâ”€â”€ .gitignore
-
-â”œâ”€â”€ requirements.txt
-
-â”œâ”€â”€ sniffer.py
-
-â””â”€â”€ README.md
+├──  .gitignore
+│
+├──  requirements.txt
+│
+├──  sniffer.py
+│
+└── README.md
 
 ```
 
