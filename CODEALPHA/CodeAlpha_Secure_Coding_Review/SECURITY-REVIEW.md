@@ -52,9 +52,9 @@ An unauthorized user could gain administrative capabilities, including user mana
 
 **Evidence:**
 
-- `s1.png`: registration configuration and default.
-- `s2.png`: registration logic and role assignment.
-- `s3.png`: administrative capabilities.
+- `Screenshots/s1.png`: registration configuration and default.
+- `Screenshots/s2.png`: registration logic and role assignment.
+- `Screenshots/s3.png`: administrative capabilities.
 - `.env.example`: documents the lack of email verification.
 
 **Recommendation:**
@@ -66,6 +66,16 @@ An unauthorized user could gain administrative capabilities, including user mana
 - Add regression tests for attempted administrator account pre-claim.
 
 **Status:** Finding identified during source review; no exploitation against a live deployment was performed.
+
+
+
+#### Supporting screenshots ? PWV-001 ? Administrator account pre-claim
+
+![Registration configuration and default](Screenshots/s1.png)
+
+![Registration logic and administrator role assignment](Screenshots/s2.png)
+
+![Administrative capabilities](Screenshots/s3.png)
 
 ### PWV-002 — Medium: Missing application-level IP/global rate limiting
 
@@ -89,8 +99,8 @@ An attacker may repeatedly trigger account lockouts, creating an availability an
 
 **Evidence:**
 
-- `s4.png`: account lockout implementation.
-- `s10.png`: search for application-level rate-limiting implementation.
+- `Screenshots/s4.png`: account lockout implementation.
+- `Screenshots/s10.png`: search for application-level rate-limiting implementation.
 
 **Recommendation:**
 
@@ -100,6 +110,14 @@ An attacker may repeatedly trigger account lockouts, creating an availability an
 - Test lockout behavior without allowing attackers to cause indefinite denial of service.
 
 **Limitation:** External reverse-proxy and WAF configurations were not assessed. This finding concerns the reviewed application code.
+
+
+
+#### Supporting screenshots ? PWV-002 ? Application-level rate limiting
+
+![Account-level failed-login lockout](Screenshots/s4.png)
+
+![Search for application-level rate limiting](Screenshots/s10.png)
 
 ## 4. Automated security checks
 
@@ -119,7 +137,15 @@ Manual inspection showed that the value was an empty string used to clear userna
 
 The alert was treated as a false positive and was not suppressed.
 
-Evidence: `s7.png` and `s11.png`.
+Evidence: `Screenshots/s7.png` and `Screenshots/s11.png`.
+
+
+
+#### Supporting screenshots ? Bandit finding disposition
+
+![Bandit static-analysis output](Screenshots/s7.png)
+
+![Code behind the Bandit false positive](Screenshots/s11.png)
 
 ### Dependency checks
 
@@ -128,6 +154,14 @@ Evidence: `s7.png` and `s11.png`.
 `npm audit` reported zero vulnerabilities across 40 audited packages.
 
 These results reflect known advisories available to the tools at the time of testing. They do not prove that dependencies are free of all vulnerabilities.
+
+
+
+#### Supporting screenshots ? Dependency vulnerability checks
+
+![pip-audit dependency check](Screenshots/s8.png)
+
+![npm audit dependency check](Screenshots/s9.png)
 
 ## 5. Automated test results
 
@@ -140,7 +174,15 @@ The full pytest suite completed with:
 
 The Node-dependent UI tests were included in the test run.
 
-Evidence: `s5.png` and `s6.png`.
+Evidence: `Screenshots/s5.png` and `Screenshots/s6.png`.
+
+
+
+#### Supporting screenshots ? Automated test results
+
+![Automated test execution](Screenshots/s5.png)
+
+![Final pytest result: 175 passed](Screenshots/s6.png)
 
 ## 6. Additional security observations
 
