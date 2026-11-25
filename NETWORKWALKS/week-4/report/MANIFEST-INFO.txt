@@ -1,0 +1,10 @@
+NETWORKWALKS — WEEK 4
+Mediroza General Hospital
+Evidence Integrity Manifest
+
+Generated: 2026-11-25 15:38:33 UTC
+Algorithm: SHA-256
+Manifest: SHA256SUMS.txt
+
+Covers evidence/, m1/, report/ files,
+and FINDINGS_REGISTER.md.

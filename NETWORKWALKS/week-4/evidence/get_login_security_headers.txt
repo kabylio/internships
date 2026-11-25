@@ -1,0 +1,10 @@
+
+===== https://medirozahospital.com/patient/login.php =====
+HTTP/2 200 
+x-powered-by: PHP/8.2.36
+server: LiteSpeed
+
+===== https://medirozahospital.com/staff/login.php =====
+HTTP/2 200 
+x-powered-by: PHP/8.2.36
+server: LiteSpeed

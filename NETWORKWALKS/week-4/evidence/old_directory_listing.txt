@@ -1,0 +1,6 @@
+NETWORKWALKS — WEEK 4
+Mediroza General Hospital
+Directory Listing: /old/
+================================================
+
+mediroza_db_backup_2019.sql: https://medirozahospital.com/old/mediroza_db_backup_2019.sql

@@ -1,0 +1,11 @@
+NETWORKWALKS — WEEK 4
+Mediroza General Hospital
+Directory Listing: /patient/
+================================================
+
+reports: https://medirozahospital.com/patient/reports/
+download.php: https://medirozahospital.com/patient/download.php
+error_log: https://medirozahospital.com/patient/error_log
+login.php: https://medirozahospital.com/patient/login.php
+logout.php: https://medirozahospital.com/patient/logout.php
+portal.php: https://medirozahospital.com/patient/portal.php
