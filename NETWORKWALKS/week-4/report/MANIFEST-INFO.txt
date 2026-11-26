@@ -1,10 +1,5 @@
-NETWORKWALKS — WEEK 4
-Mediroza General Hospital
-Evidence Integrity Manifest
-
-Generated: 2026-11-25 15:38:33 UTC
-Algorithm: SHA-256
-Manifest: SHA256SUMS.txt
-
-Covers evidence/, m1/, report/ files,
-and FINDINGS_REGISTER.md.
+NetworkWalks Week 4 submission manifest
+Generated UTC: 2026-11-26 07:51:02
+Coverage: all files under submission except SHA256SUMS.txt itself.
+Checksum algorithm: SHA-256.
+Paths in SHA256SUMS.txt are relative to the submission directory.

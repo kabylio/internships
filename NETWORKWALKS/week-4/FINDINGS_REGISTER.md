@@ -1,36 +1,32 @@
 # Mediroza General Hospital — Findings Register
 
-Assessment: NetworkWalks Week 4
-Target: https://medirozahospital.com
+**Program:** NetworkWalks — Week 4
+**Batch:** B083
+**Target:** https://medirozahospital.com
+**Assessment type:** Black-box web application assessment
 
 | ID | Finding | Classification | Severity | Status |
 |---|---|---|---|---|
-| F-01 | Public directory listing | Security Misconfiguration | Medium (provisional) | Confirmed |
-| F-02 | PHP version disclosure | Information Disclosure | Low | Confirmed |
-| F-03 | Missing HTTP security headers | Security Misconfiguration | Informational | Observed on 3 GET endpoints |
+| F1 | Public directory listing | Security Misconfiguration | Low | Confirmed |
+| F2 | SQL injection in patient login — authentication bypass | Injection / Authentication Bypass | Critical | Confirmed |
+| F3 | Unauthorized access to patient lab reports | Broken Access Control | High | Report-supported; live downloads not replayed in follow-up |
+| F4 | Weak PDF passwords | Cryptographic / Password Weakness | High | Three local PDF copies cracked offline; source-version discrepancy remains |
+| F5 | Sensitive PDF metadata disclosure | Information Disclosure | Medium | Confirmed on a local PDF copy |
+| F6 | Publicly exposed legacy SQL backup | Sensitive Data Exposure / Security Misconfiguration | Critical | Public directory listing and backup HTTP response confirmed; SQL contents not downloaded |
 
-## Positive Security Observations
+## Auxiliary observations
 
-- Patient portal redirects unauthenticated requests to login.php.
-- Patient download endpoint redirects unauthenticated requests to login.php.
+| ID | Observation | Severity | Status |
+|---|---|---|---|
+| A1 | PHP version disclosure (`X-Powered-By`) | Low | Confirmed |
+| A2 | Missing HTTP security headers on three tested GET endpoints | Informational | Observed; limited endpoint coverage |
 
-These observations do not establish complete access-control effectiveness.
+## Important limitations
 
-## Outstanding Objectives
-
-- M1: Partially completed. Directory exposure and other observations were documented, but successful initial access was not demonstrated.
-- M2: Not completed. The patient reports directory returned HTTP 403; no PDF files were retrieved or assessed.
-- M3: Not completed. Employee and shareholder data were not accessed or verified.
-- M4: Report prepared, internally checked, packaged, and published to GitHub.
-
-## Evidence Limitations
-
-- Directory listings are confirmed.
-- Contents of listed sensitive files have not been verified.
-- No successful authentication bypass or injection has been demonstrated.
-- F-03 was observed on GET responses from `/`, `/patient/login.php`, and `/staff/login.php`; evidence is stored in `evidence/get_security_headers.txt` and `evidence/get_login_security_headers.txt`.
-
-
-## Additional M2 Evidence
-
-- `evidence/m2_reports_directory_403.txt`: GET request to `/patient/reports/` returned HTTP 403 Forbidden on 26 November 2026. No PDF filenames were retrieved. This does not establish that the PDFs are absent; M2 remains incomplete.
+- F2 demonstrates access to the patient portal, not administrator privileges.
+- F3 is supported by the portal's report links and previously collected report artifacts. The three download requests were not independently replayed during the 26 November follow-up.
+- F4 was verified against three local PDF files. Their relationship to the PDFs referenced in the original report has not been conclusively reconciled.
+- F5 metadata was verified on a local PDF copy. Some metadata field labels differ between the original report and the local copy.
+- F6 was verified through an unauthenticated directory listing and an HTTP HEAD response for the listed SQL backup. The backup was not downloaded or inspected.
+- The live backup filename observed during follow-up differs from the filename cited in the original report.
+- Follow-up verification performed on 26 November 2026 is distinguished from the original assessment period of 22–24 November 2026.

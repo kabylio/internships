@@ -1,0 +1,24 @@
+Finding F4 — Weak PDF Password Protection
+
+Verification method:
+- Extracted PDF password hashes from three locally available PDF copies.
+- Performed offline dictionary-based recovery with John the Ripper.
+- All three password hashes were recovered.
+- Validated the recovered passwords using qpdf --check.
+
+Observed:
+- Password hashes tested: 3
+- Password hashes recovered: 3
+- Password hashes remaining: 0
+- PDF encryption revision reported by qpdf: R=3
+- Encryption key length: 128-bit
+
+Conclusion:
+All three tested local PDF copies were protected by weak passwords
+that could be recovered through offline dictionary-based testing.
+
+Limitations:
+The tested local files have not been conclusively reconciled with
+all PDF copies referenced in the original assessment report.
+Plaintext passwords and raw extracted hashes are intentionally
+excluded from this evidence record.

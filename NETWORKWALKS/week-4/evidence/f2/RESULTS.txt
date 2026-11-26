@@ -1,0 +1,35 @@
+NETWORKWALKS — WEEK 4
+Finding F2 — SQL Injection Authentication Bypass
+
+Endpoint:
+POST /patient/login.php
+
+Injection parameter:
+username
+
+Test input:
+admin' -- 
+
+Password:
+Empty
+
+Baseline:
+Invalid credentials returned HTTP 200.
+Unauthenticated GET /patient/portal.php returned HTTP 302
+redirecting to login.php.
+
+Injection:
+Login submission returned HTTP 302 redirecting to portal.php.
+
+Session verification:
+GET /patient/portal.php without the injection session:
+HTTP 302, Location: login.php.
+
+GET /patient/portal.php with the injection-created session:
+HTTP 200, response body 2307 bytes.
+Portal content included "Patient Portal", "My lab reports",
+and "logout".
+
+Conclusion:
+SQL injection authentication bypass confirmed.
+Administrative privileges were not independently established.

@@ -1,0 +1,23 @@
+Finding F5 — Sensitive PDF Metadata Disclosure
+
+Verification method:
+- Used qpdf to create a decrypted working copy of a locally
+  available password-protected PDF.
+- Inspected the decrypted copy using ExifTool.
+
+Observed metadata:
+- Author: j.malik
+- Creator: Mediroza CMS 1.4.2
+- Producer: Mediroza Lab Reporting Module
+- Subject: Full Blood Count
+- Comments: Internal note referencing the /old backup directory
+  and a previous site migration.
+
+Conclusion:
+The document metadata contained internal operational information
+that disclosed a backup location and migration context.
+
+Limitations:
+This output describes the locally tested PDF copy. Some metadata
+field values differ from those transcribed in the original report.
+Patient document contents and recovered passwords are not included.

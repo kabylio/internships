@@ -1,4 +1,4 @@
-# F-02 — PHP Version Disclosure
+# A-01 — PHP Version Disclosure
 
 **Target:** https://medirozahospital.com
 **Category:** Information Disclosure

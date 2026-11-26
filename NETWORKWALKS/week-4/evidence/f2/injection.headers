@@ -1,0 +1,13 @@
+HTTP/2 302 
+x-powered-by: PHP/8.2.36
+set-cookie: PHPSESSID=[REDACTED]; path=/; secure
+expires: Thu, 19 Nov 1981 08:52:00 GMT
+cache-control: no-cache, no-store, must-revalidate, max-age=0
+pragma: no-cache
+location: portal.php
+content-type: text/html; charset=UTF-8
+content-length: 0
+date: Thu, 26 Nov 2026 06:44:31 GMT
+server: LiteSpeed
+x-turbo-charged-by: LiteSpeed
+

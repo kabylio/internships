@@ -35,8 +35,8 @@ also publicly accessible.
 
 ## Severity
 
-Provisional: Medium.
-Final severity depends on verified impact and data exposure.
+Low.
+Severity is Low because directory indexing exposes filenames and structure; sensitive file contents are assessed separately under F6.
 
 ## Recommendation
 

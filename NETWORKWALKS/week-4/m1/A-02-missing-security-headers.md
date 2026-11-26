@@ -1,4 +1,4 @@
-# F-03 — Missing HTTP Security Headers
+# A-02 — Missing HTTP Security Headers
 
 **Target:** https://medirozahospital.com  
 **Severity:** Informational  

@@ -1,0 +1,23 @@
+Finding F6 — Publicly exposed legacy database backup
+
+Directory:
+https://medirozahospital.com/old/
+
+Backup:
+mediroza_db_backup_2019.sql
+
+Observed:
+- Directory response: HTTP 200
+- Directory indexing: enabled
+- Backup HEAD response: HTTP 200
+- Content-Type: text/x-sql
+- Content-Length: 6346 bytes
+
+Verification method:
+Unauthenticated HTTP GET of the directory listing and HTTP HEAD
+request to the backup URL. The SQL dump was not downloaded.
+
+Original report filename discrepancy:
+The original report references mediroza_hospital.sql.
+The live directory listing observed during this verification
+exposes mediroza_db_backup_2019.sql.

@@ -1,13 +1,13 @@
 # M1 — Initial Access Assessment
 
-**Client:** Mediroza General Hospital  
-**Program:** NetworkWalks — Week 4  
-**Assessment type:** Black-box  
+**Client:** Mediroza General Hospital
+**Program:** NetworkWalks — Week 4
+**Assessment type:** Black-box web application assessment
 **Target:** https://medirozahospital.com
 
 ## 1. Reconnaissance
 
-The following activities were completed:
+Activities included:
 
 - DNS resolution and HTTP response inspection.
 - robots.txt and sitemap inspection.
@@ -15,53 +15,70 @@ The following activities were completed:
 - Patient and staff application endpoint inspection.
 - Public directory-index inspection.
 - HTTP response-header inspection.
-- Static stylesheet inspection.
+- Static resource inspection.
 
-## 2. Confirmed observations
+## 2. Confirmed findings and observations
 
-### F-01 — Public directory listing
+### F1 — Public directory listing
 Directory indexes were accessible under:
-- /patient/
-- /staff/
-- /old/
+- `/patient/`
+- `/staff/`
+- `/old/`
 
-### F-02 — PHP version disclosure
-Login endpoints disclosed PHP/8.2.36 through X-Powered-By.
+Severity: Low.
 
-### F-03 — Missing security headers
-The six checked security headers were absent from GET responses
-for `/`, `/patient/login.php`, and `/staff/login.php`.
-Evidence:
-- `evidence/get_security_headers.txt`
-- `evidence/get_login_security_headers.txt`
+### F2 — SQL injection in patient login
+A crafted username input bypassed the patient login flow.
+The resulting session accessed `/patient/portal.php` and returned
+the patient portal content.
 
-This observation is limited to those three tested endpoints.
+Severity: Critical.
+
+Evidence: `../evidence/f2/RESULTS.txt`.
+
+Administrative privileges were not established.
+
+### Auxiliary observation A1 — PHP version disclosure
+Patient and staff login responses disclosed PHP/8.2.36 through
+the `X-Powered-By` header.
+
+Severity: Low.
+
+### Auxiliary observation A2 — Missing HTTP security headers
+Six security headers were absent from the three tested GET
+endpoints: `/`, `/patient/login.php`, and `/staff/login.php`.
+
+Severity: Informational. Coverage was limited to these endpoints.
 
 ## 3. Access-control observations
 
-Unauthenticated requests to:
-- /patient/portal.php
-- /patient/download.php
+An unauthenticated request to `/patient/portal.php` returned
+HTTP 302 and redirected to `login.php`.
 
-returned HTTP 302 redirects to login.php.
+A request using the injection-created session returned HTTP 200
+and displayed the patient portal.
 
-This indicates an authentication gate but does not establish complete authorization effectiveness.
+This confirms an authentication bypass in the tested login flow.
+It does not establish administrator access.
 
 ## 4. M1 objective status
 
-**Status: Partially completed.**
+**Status: Initial access demonstrated.**
 
-Public application structure and security weaknesses were identified. Successful unauthorized access and retrieval of the three challenge PDFs have not been demonstrated.
+The patient login SQL injection was confirmed and the resulting
+session was verified against the patient portal.
 
 ## 5. Evidence
 
 Supporting evidence is stored in:
-- ../evidence/
-- ../recon/
-- F-01-directory-listing.md
-- F-02-php-version-disclosure.md
-- F-03-missing-security-headers.md
+- `../evidence/`
+- `../recon/`
+- `F-01-directory-listing.md`
+- `A-01-php-version-disclosure.md`
+- `A-02-missing-security-headers.md`
 
 ## 6. Limitations
 
-No patient records, database contents, or employee information were accessed or extracted during this assessment phase.
+M1 evidence establishes patient-portal access only. It does not
+establish administrative privileges or complete access to the
+underlying server or database.
