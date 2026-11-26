@@ -1,0 +1,12 @@
+NetworkWalks Week 4 — Mediroza
+Test: Patient reports directory access
+URL: https://medirozahospital.com/patient/reports/
+Date: 2026-11-26T00:13:12-05:00
+
+HTTP/2 403 
+content-type: text/html
+content-length: 1242
+date: Thu, 26 Nov 2026 05:13:13 GMT
+server: LiteSpeed
+
+Result: HTTP 403 Forbidden; no PDF filenames retrieved.

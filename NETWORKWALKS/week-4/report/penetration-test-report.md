@@ -117,8 +117,15 @@ prove that authorization controls are fully effective.
 The three challenge PDFs, database contents, employee records,
 and shareholder information have not been verified or extracted.
 
-Successful initial access and the M2/M3 objectives remain
-unverified.
+A GET request to `/patient/reports/` returned HTTP 403 Forbidden
+on 26 November 2026. No PDF filenames were retrieved. This result
+documents a server-side access restriction; it does not establish
+that the challenge PDFs are absent. See
+`evidence/m2_reports_directory_403.txt`.
+
+M1 remains partially completed: directory exposure and other
+observations were documented, but successful initial access was
+not demonstrated. M2 and M3 remain incomplete and unverified.
 
 # 7. Remediation Priorities
 

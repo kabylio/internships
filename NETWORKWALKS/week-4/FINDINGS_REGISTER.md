@@ -18,10 +18,10 @@ These observations do not establish complete access-control effectiveness.
 
 ## Outstanding Objectives
 
-- M1: Authorized initial-access assessment and proof.
-- M2: Assessment of the three challenge PDFs.
-- M3: Authorized assessment of critical data exposure.
-- M4: Report draft prepared; final QA and evidence packaging pending.
+- M1: Partially completed. Directory exposure and other observations were documented, but successful initial access was not demonstrated.
+- M2: Not completed. The patient reports directory returned HTTP 403; no PDF files were retrieved or assessed.
+- M3: Not completed. Employee and shareholder data were not accessed or verified.
+- M4: Report prepared, internally checked, packaged, and published to GitHub.
 
 ## Evidence Limitations
 
@@ -29,3 +29,8 @@ These observations do not establish complete access-control effectiveness.
 - Contents of listed sensitive files have not been verified.
 - No successful authentication bypass or injection has been demonstrated.
 - F-03 was observed on GET responses from `/`, `/patient/login.php`, and `/staff/login.php`; evidence is stored in `evidence/get_security_headers.txt` and `evidence/get_login_security_headers.txt`.
+
+
+## Additional M2 Evidence
+
+- `evidence/m2_reports_directory_403.txt`: GET request to `/patient/reports/` returned HTTP 403 Forbidden on 26 November 2026. No PDF filenames were retrieved. This does not establish that the PDFs are absent; M2 remains incomplete.
